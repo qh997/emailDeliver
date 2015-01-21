@@ -1,0 +1,8 @@
+#!/bin/bash
+
+cp mail-pusher.pl /usr/local/bin/
+cp mail-maker.pl /usr/local/bin/
+chmod a+x /usr/local/bin/mail-*
+
+mkdir -p /etc/mail-deliver/template
+mkdir -p /var/log/mail-deliver/
