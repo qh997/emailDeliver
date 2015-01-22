@@ -1,0 +1,9 @@
+#!/bin/bash
+mkdir -p /etc/mail-deliver/template
+mkdir -p /var/log/mail-deliver/
+
+cp mail-deliver.pl /usr/local/bin/
+cp mail-sender.pl /usr/local/bin/
+cp mail-deliver /etc/init.d/
+cp config.conf /etc/mail-deliver/
+chmod 755 /usr/local/bin/mail-*

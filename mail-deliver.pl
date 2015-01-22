@@ -5,6 +5,10 @@ use warnings;
 use IO::Socket;
 use MIME::Base64;
 
+my $tmp_path = '/tmp/mail-deliver';
+
+say "$0 start.";
+
 my $main_socket = IO::Socket::INET->new(
 	'Localhost' => 'localhost',
 	'LocalPort' => '9527',
@@ -32,6 +36,8 @@ sub start {
 	$id .= '-';
 	$id .= `date +'%s'`;
 	chomp $id;
+	`mkdir -p $tmp_path`;
+	$id = "$tmp_path/$id";
 
 	open my $fh, "> $id";
 	while (defined (my $buf = <$socket>)) {
@@ -40,7 +46,7 @@ sub start {
 	}
 	close $fh;
 
-	system('./mail-sender.pl', "$id");
+	system('mail-sender.pl', "$id");
 
 	print '*** DONE '.$socket->peerhost()."\n";
 }

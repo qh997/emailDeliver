@@ -15,7 +15,7 @@ else {
 	$mail_str = join '', <STDIN>;
 }
 
-my %conf = get_config('config.conf');
+my %conf = get_config('/etc/mail-deliver/config.conf');
 
 my %email = (
 	to => [],

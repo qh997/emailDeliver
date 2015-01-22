@@ -2,8 +2,7 @@
 start()
 {
     echo "start mail-deliver"
-    cd /home/gengs/develops/emailDeliver
-    /home/gengs/develops/emailDeliver/mail-deliver.pl >> /tmp/mail-deliver.log &
+    /usr/local/bin/mail-deliver.pl >> /var/log/mail-deliver/mail-deliver.log &
     exit 0;
 }
 stop()
