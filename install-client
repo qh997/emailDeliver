@@ -1,6 +1,6 @@
 #!/bin/bash
 cp mail-pusher.pl /usr/local/bin/
-cp mail-maker.pl /usr/local/bin/
+cp mail-maker /usr/local/bin/
 chmod 755 /usr/local/bin/mail-*
 
 mkdir -p /etc/mail-deliver/template
