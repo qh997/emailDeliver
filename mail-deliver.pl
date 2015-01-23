@@ -46,7 +46,9 @@ sub start {
 	}
 	close $fh;
 
-	system('mail-sender.pl', "$id");
+	foreach (`mail-sender.pl $id 2>&1`) {
+		print $_;
+	}
 
 	print '*** DONE '.$socket->peerhost()."\n";
 }

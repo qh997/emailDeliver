@@ -2,8 +2,8 @@
 start()
 {
     echo "start mail-deliver"
-    /usr/local/bin/mail-deliver.pl >> /var/log/mail-deliver/mail-deliver.log &
-    exit 0;
+    /usr/local/bin/mail-deliver.pl >> /var/log/mail-deliver/mail-deliver.log & 2>1&
+    exit 0
 }
 stop()
 {
@@ -24,5 +24,5 @@ restart)
     ;;
 *)
     echo "usage: $0 start|stop|restart"
-    exit 0;
+    exit 0
 esac

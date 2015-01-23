@@ -5,7 +5,7 @@ use warnings;
 use Getopt::Long;
 
 my $temp_root = '/etc/mail-deliver/template';
-my $log_root = '/var/log/mail-deliver/';
+my $tmp_root = '/tmp/mail-deliver/';
 my $mail_pusher = '/usr/local/bin/mail-pusher.pl';
 
 my $start = undef;
@@ -17,7 +17,9 @@ GetOptions (
 	'i|id=s' => \$id,
 ) or die "Error in command line arguments\n";
 
-if ($id && ! -e "$log_root/$id") {
+`mkdir -p $tmp_root`;
+
+if ($id && ! -e "$tmp_root/$id") {
 	say "ERROR - ID `$id' doesn't exists.";
 	exit 1;
 }
@@ -26,7 +28,7 @@ if (defined $start) {
 	if (-e "$temp_root/$start.template") {
 		$id = `date +'%s'`;
 		chomp $id;
-		`cp "$temp_root/$start.template" "$log_root/$id"`;
+		`cp "$temp_root/$start.template" "$tmp_root/$id"`;
 		say $id;
 	}
 	else {
@@ -41,7 +43,7 @@ if (!$id) {
 }
 
 if (@ARGV) {
-	open my $ifh, "< $log_root/$id";
+	open my $ifh, "< $tmp_root/$id";
 	my @draft = <$ifh>;
 	close $ifh;
 
@@ -62,13 +64,13 @@ if (@ARGV) {
 		}
 	}
 
-	open my $ofh, "> $log_root/$id";
+	open my $ofh, "> $tmp_root/$id";
 	print $ofh join '', @draft;
 	close $ofh;
 }
 
 if ($finish) {
-	system("$mail_pusher < $log_root/$id");
+	system("$mail_pusher < $tmp_root/$id");
 }
 
 sub replace_draft {

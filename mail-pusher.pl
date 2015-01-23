@@ -24,7 +24,6 @@ my $socket = IO::Socket::INET->new(
 ) or die "Can not connection to server.\n$@";
 
 print decode_base64(talk($socket, $mail_str));
-print "\n";
 
 $socket->close() or die "Close Socket failed.$@";
 
