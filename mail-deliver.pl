@@ -24,6 +24,8 @@ while (my $new_socket = $main_socket->accept()) {
 
 		exit 0;
 	}
+
+	wait();
 }
 
 close $main_socket;

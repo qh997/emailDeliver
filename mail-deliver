@@ -2,7 +2,7 @@
 start()
 {
     echo "start mail-deliver"
-    /usr/local/bin/mail-deliver.pl >> /var/log/mail-deliver/mail-deliver.log & 2>1&
+    /usr/local/bin/mail-deliver.pl >> /var/log/mail-deliver/mail-deliver.log & 2>&1
     exit 0
 }
 stop()
