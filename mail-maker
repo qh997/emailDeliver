@@ -81,6 +81,7 @@ sub replace_draft {
 	my $nofound = 1;
 	foreach my $line (@$_draft) {
 		if ($line =~ s/<$_p>/$_v/g) {
+			$line =~ s/\\n/\n/g;
 			$nofound = 0;
 		}
 	}
